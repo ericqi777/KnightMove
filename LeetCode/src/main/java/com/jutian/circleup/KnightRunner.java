@@ -20,7 +20,7 @@ public class KnightRunner {
 		String metrixClassPath = args[1];
 		Collection<String> words = WordFactory.SINGLETON.getWords(wordFileClassPath);
 		int maxLength = getMaxLength(words);
-		String[][] metrix = MetrixFactory.SINGLETON.buildMetrix(metrixClassPath);
+		String[][] metrix = MatrixFactory.SINGLETON.buildMatrix(metrixClassPath);
 		WordFinder wordFinder = WordFinderFactory.SINGLETON.getWordFinder(MoveStrategy.KNIGHT, maxLength);
 		Collection<Result> results = wordFinder.run(words, metrix);
 		printResult(results);

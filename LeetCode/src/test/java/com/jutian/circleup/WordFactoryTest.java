@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.jutian.circleup.test.util.TestUtil;
+
 /**
  * tests {@link WordFactory}.
  *
@@ -13,7 +15,7 @@ import org.junit.Test;
 public class WordFactoryTest {
 
 	@Test
-	public void testCreateWords() throws IOException {
+	public void testBuildMatrix() throws IOException {
 		String fileOnClassPath = "/word/words.txt";
 		String fullPath = TestUtil.SINGLETON.getFullPath(fileOnClassPath);
 		Assert.assertNotNull(fullPath);

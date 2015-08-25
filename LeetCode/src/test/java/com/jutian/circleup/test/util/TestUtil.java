@@ -1,4 +1,4 @@
-package com.jutian.circleup;
+package com.jutian.circleup.test.util;
 
 import java.net.URL;
 
