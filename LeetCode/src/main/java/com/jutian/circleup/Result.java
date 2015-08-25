@@ -2,16 +2,24 @@ package com.jutian.circleup;
 
 import java.util.Comparator;
 
+/**
+ * matching result.
+ */
 public class Result {
 
 	private String word;
 	private boolean isFound;
-	
+
+	/**
+	 * constructor.
+	 * @param word  the word to be matched.
+	 * @param isFound true if found.  false otherwise.
+	 */
 	public Result(final String word, final boolean isFound) {
 		this.word = word;
 		this.isFound = isFound;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -26,7 +34,7 @@ public class Result {
 		if (this == obj)
 			return true;
 		if (obj == null)
-			return false; 
+			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Result other = (Result) obj;
@@ -40,19 +48,28 @@ public class Result {
 		return true;
 	}
 
+	/**
+	 * @return the word.
+	 */
 	public String getWord() {
 		return word;
 	}
+
+	/**
+	 * @return true if found.  false if not.
+	 */
 	public boolean isFound() {
 		return isFound;
 	}
-	
+
+	/**
+	 * compare 2 results.
+	 */
 	public static class ResultComparator implements Comparator<Result> {
 
-		@Override
 		public int compare(Result arg0, Result arg1) {
 			return arg0.getWord().compareTo(arg1.getWord());
 		}
-		
+
 	}
 }

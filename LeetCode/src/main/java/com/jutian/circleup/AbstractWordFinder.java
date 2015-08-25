@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * algorithm:¡¡
+ * algorithm:
  * get all the possible words from different paths in the matrix.
  * then loops through the input list and check if the word exists in
  * the possible words.
