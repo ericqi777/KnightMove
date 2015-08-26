@@ -9,78 +9,65 @@ public class WordFinderWithDFS extends AbstractWordFinder {
 		super(maxPath);
 	}
 	private void generateWords(Set<String> allPossibleWords, String[][] matrix,
-			String str, int currX, int currY, int step, int maxLength) {
-		int[][] move = { { -1, -2 }, { -2, -1 }, { -1, 2 }, { -2, 1 },
-				{ 1, -2 }, { 2, -1 }, { 2, 1 }, { 1, 2 } };
+			String str, int currX, int currY, int step, int maxLength, int next) {
+		int[][] move = { { -1, -2 }, { 1, 2 }, { -2, -1 }, { 2, 1 }, { -1, 2 },
+				{ 1, -2 }, { -2, 1 }, { 2, -1 } };
 		int row = matrix.length;
 		int column = matrix[0].length;
-		while (step <= maxLength) {
-			int next = 0;
-			while (next < move.length) {
-				boolean x = currX + move[next][0] < 0
-						|| currX + move[next][0] >= column;
-				boolean y = currY + move[next][1] < 0
-						|| currX + move[next][1] >= row;
-				while (x || y) {
-					next++;
-					x = currX + move[next][0] < 0
-							|| currX + move[next][0] >= column;
-					y = currY + move[next][1] < 0
-							|| currY + move[next][1] >= row;
-				}
-				currX += move[next][0];
-				currY += move[next][1];
-				str += matrix[currY][currX];
-				allPossibleWords.add(str);
-				if (step < maxLength) {
-					generateWords(allPossibleWords, matrix, str, currX, currY,
-							step + 1, maxLength);
-				}
-				str = str.substring(0, str.length() - 1);
-			}
+		
+		
+		if(step >= maxLength ){
+			return;
 		}
-	}
+		if(!allPossibleWords.contains(str)){
+			allPossibleWords.add(str);
+		}
+			
+		
+		while(str.length() < maxLength && next != move.length - 1){
+			for(int i = 0; i < move.length; i++){
+				next = i;
+				if(str.length() < maxLength){
+					int nextX = currX + move[i][0];
+					int nextY = currY + move[i][1];
+					
+					if((nextX >= 0 && nextX < column) && (nextY >= 0 && nextY < row)){
+						str += matrix[nextY][nextX];
+						
+						step++;
+						generateWords (allPossibleWords, matrix, str, nextX, nextY, step, maxLength, next);
+						str = str.substring(0, str.length()-1);
+						step--;
 
-	private String findFirst(String pre, String curr) {
-		String first = null;
-		int rst = 0;
-		int index = 0;
-		while (rst == 0 && index < pre.length()) {
-			rst = pre.charAt(index) - curr.charAt(index);
-			if (rst != 0) {
-				if (rst > 0)
-					first = curr;
-				else
-					first = pre;
+					}
+				}
+				
+/*				if((str.length() < maxLength) && (currX + move[i][0] >= 0 && currX + move[i][0] < column)&&
+						(currY + move[i][1] >= 0 && currY + move[i][1] <row)){
+					currX += move[i][0];
+					currY += move[i][1];
+					str += matrix[currY][currX];
+					step++;
+					allPossibleWords.add(str);
+					generateWords (allPossibleWords, matrix, str, currX, currY, step, maxLength, next + 1);
+				}*/
+				
 			}
 		}
-		return first;
-	}
-
-	private String findLast(String pre, String curr) {
-		String last = null;
-		int rst = 0;
-		int index = 0;
-		while (rst == 0 && index < pre.length()) {
-			rst = pre.charAt(index) - curr.charAt(index);
-			if (rst != 0) {
-				if (rst > 0)
-					last = pre;
-				else
-					last = curr;
-			}
-		}
-		return last;
+		next = 0;
+			
+		
 	}
 
 	protected Set<String> getAllPossibleWords(final String[][] matrix) {
 		int row = matrix.length;
-		int column = matrix.length;
+		int column = matrix[0].length;
 		Set<String> allPossibleWords = new HashSet<String>();
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				generateWords(allPossibleWords, matrix, matrix[i][j], i, j, 1,
-						maxLength);
+				allPossibleWords.add(matrix[i][j]);
+				generateWords(allPossibleWords, matrix, matrix[i][j], j, i, 1,
+						4, 0);
 			}
 		}
 		return allPossibleWords;

@@ -23,23 +23,29 @@ public class KnightRunner {
 		String[][] metrix = MatrixFactory.SINGLETON.buildMatrix(metrixClassPath);
 		WordFinder wordFinder = WordFinderFactory.SINGLETON.getWordFinder(MoveStrategy.KNIGHT, maxLength);
 		Collection<Result> results = wordFinder.run(words, metrix);
-		printResult(results);
+		//printResult(results);
 		new QuestionOneAnswer().answer(results);
+		new QuestionTwoAnswer().answer(results);
 	}
 
 	private static int getMaxLength(Collection<String> words) {
-		// TODO Auto-generated method stub
-		return 100;
+		int maxLength = 0;
+		for(String word :words){
+			if(word.length() >= maxLength){
+				maxLength = word.length();
+			}
+		}		
+		return maxLength;
 	}
 
-	private static void printResult(Collection<Result> results) {
-		for (Result result : results) {
-			if (result.isFound()) {
-				System.out.println(result.getWord() + " is found!");
-			} else {
-				System.out.println(result.getWord() + " is NOT found!");
-			}
-		}
-		
-	}
+//	private static void printResult(Collection<Result> results) {
+//		for (Result result : results) {
+//			if (result.isFound()) {
+//				System.out.println(result.getWord() + " is found!");
+//			} else {
+//				System.out.println(result.getWord() + " is NOT found!");
+//			}
+//		}
+//		
+//	}
 }

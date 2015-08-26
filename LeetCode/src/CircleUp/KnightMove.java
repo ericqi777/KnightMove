@@ -18,10 +18,10 @@ public class KnightMove {
 		Scanner scan = null;
 		int column = 0;
 		int row = 0;
-		String str = null;
+		String str = "";
 		boolean first = true;
 		try{
-			scan = new Scanner(new File("e:\\new.txt"));
+			scan = new Scanner(new File("g:\\matrix.txt"));
 		}
 		catch(FileNotFoundException e){
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class KnightMove {
 		String str = null;
 		Scanner scan = null;
 		try{
-			scan = new Scanner(new File("e:\\list.txt"));
+			scan = new Scanner(new File("g:\\list.txt"));
 		}
 		catch(FileNotFoundException e){
 			e.printStackTrace();
@@ -90,12 +90,11 @@ public class KnightMove {
 		return map;
 	}
 	
-	public String[] matching(
+	public int matching(
 			HashMap<String, Integer> map, String[][] matrix, int maxLength){
 	
 		int row = matrix.length;
 		int column = matrix.length;
-		int countMatch = 0;
 		int count = 0;
 		
 		for(int i = 0; i<row; i++){
@@ -103,9 +102,9 @@ public class KnightMove {
 				count+=generateWords(map, matrix, matrix[i][j], i, j, 1, maxLength, 0, count);
 			}
 		}
-		String[] rst = null;
-		rst[0] = Integer.toString(countMatch);
-		return rst;		
+
+		System.out.println(count);
+		return count;		
 	}
 	
 	public int generateWords (HashMap<String, Integer> map, String[][] matrix, String str, int currX, int currY, int step, int maxLength, 

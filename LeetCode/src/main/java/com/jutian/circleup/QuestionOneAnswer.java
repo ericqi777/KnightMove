@@ -9,10 +9,13 @@ public class QuestionOneAnswer implements QuestionAnswer {
 		int count = 0;
 		for (Result result : results) {
 			if (result.isFound()) {
+				//System.out.println(result.getWord());
 				count++;
 			}
 		}
+		System.out.println("Answer of Question 1: ");
 		System.out.println(count + " words are matched");
+		System.out.println();
 	}
 
 }

@@ -15,7 +15,7 @@ public enum MatrixFactory {
 		Scanner scan = null;
 		int column = 0;
 		int row = 0;
-		String str = null;
+		String str = "";
 		boolean first = true;
 		try {
 			scan = new Scanner(new File(fileFullPath));
@@ -36,8 +36,8 @@ public enum MatrixFactory {
 
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				matrix[i][j] = str
-						.substring(i * column + j, i * column + j + 1);
+				matrix[i][j] = String.valueOf(str.charAt( i * column + j));
+						//.substring(i * column + j, i * column + j + 1);
 			}
 		}
 		return matrix;
