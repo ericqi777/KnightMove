@@ -19,6 +19,8 @@ public class WordFinderWithDFS extends AbstractWordFinder {
 		if(step >= maxLength ){
 			return;
 		}
+		if(next == 7)
+			next = 0;
 		if(!allPossibleWords.contains(str)){
 			allPossibleWords.add(str);
 		}
@@ -54,8 +56,7 @@ public class WordFinderWithDFS extends AbstractWordFinder {
 				
 			}
 		}
-		next = 0;
-			
+		
 		
 	}
 
@@ -67,7 +68,7 @@ public class WordFinderWithDFS extends AbstractWordFinder {
 			for (int j = 0; j < column; j++) {
 				allPossibleWords.add(matrix[i][j]);
 				generateWords(allPossibleWords, matrix, matrix[i][j], j, i, 1,
-						4, 0);
+						9, 0);
 			}
 		}
 		return allPossibleWords;
