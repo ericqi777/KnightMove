@@ -28,7 +28,7 @@ public class KnightRunner {
 		new QuestionTwoAnswer().answer(results);
 	}
 
-	private static int getMaxLength(Collection<String> words) {
+	public static int getMaxLength(Collection<String> words) {
 		int maxLength = 0;
 		for(String word :words){
 			if(word.length() >= maxLength){
