@@ -4,19 +4,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class WordFinderWithDFS extends AbstractWordFinder {
+	
+	private final int[][] move = { { -1, -2 }, { 1, 2 }, { -2, -1 }, { 2, 1 }, { -1, 2 },
+			{ 1, -2 }, { -2, 1 }, { 2, -1 } };
+	
 
 	public WordFinderWithDFS(final int maxPath) {
 		super(maxPath);
 	}
 	private void generateWords(Set<String> allPossibleWords, String[][] matrix,
 			String str, int currX, int currY, int step, int maxLength, int next) {
-		int[][] move = { { -1, -2 }, { 1, 2 }, { -2, -1 }, { 2, 1 }, { -1, 2 },
-				{ 1, -2 }, { -2, 1 }, { 2, -1 } };
 		int row = matrix.length;
 		int column = matrix[0].length;
 		
 		
-		if(!allPossibleWords.contains(str)){
+		if(!allPossibleWords.contains(str) && !str.equals("")){
 			allPossibleWords.add(str);
 		}
 		
@@ -65,10 +67,9 @@ public class WordFinderWithDFS extends AbstractWordFinder {
 		int column = matrix[0].length;
 		Set<String> allPossibleWords = new HashSet<String>();
 		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < column; j++) {
-				allPossibleWords.add(matrix[i][j]);
-				generateWords(allPossibleWords, matrix, matrix[i][j], j, i, 1,
-						4, 0);
+			for (int j = 0; j < column; j++) {				
+				generateWords(allPossibleWords, matrix, "", j, i, 1,
+						5, 0);
 			}
 		}
 		return allPossibleWords;
