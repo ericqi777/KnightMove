@@ -25,7 +25,7 @@ public class KnightRunner {
 		Collection<Result> results = wordFinder.run(words, metrix);
 		//printResult(results);
 		new QuestionOneAnswer().answer(results);
-		//new QuestionTwoAnswer().answer(results);
+		new QuestionTwoAnswer().answer(results);
 	}
 
 	private static int getMaxLength(Collection<String> words) {

@@ -36,22 +36,19 @@ public class QuestionTwoAnswer implements QuestionAnswer {
 		
 		rst = 0;
 		last = first;
+		//System.out.println("curr: " + last);
 		index = 0;
 		for(Result result : results){
-			if(result.isFound() && result.getWord()!= last){
+			if(result.isFound()){
 				curr = result.getWord();
-				compared = false;
 				if(curr.length() < last.length()){
 					last = curr;
 				}
 				else if(curr.length() == last.length()){
-					while (rst == 0 && index < last.length()){
-						rst = last.charAt(index) - curr.charAt(index);
-						if( rst < 0 && !compared) {
+					for(index = 0; index < last.length(); index++){
+						if(curr.charAt(index) > last.charAt(index)){
 							last = curr;
-							compared = true;
 						}
-						index++;
 					}
 				}
 			}

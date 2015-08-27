@@ -16,15 +16,15 @@ public class WordFinderWithDFS extends AbstractWordFinder {
 		int column = matrix[0].length;
 		
 		
+		if(!allPossibleWords.contains(str)){
+			allPossibleWords.add(str);
+		}
+		
 		if(step >= maxLength ){
 			return;
 		}
 		if(next == 7)
 			next = 0;
-		if(!allPossibleWords.contains(str)){
-			allPossibleWords.add(str);
-		}
-			
 		
 		while(str.length() < maxLength && next != move.length - 1){
 			for(int i = 0; i < move.length; i++){
@@ -68,7 +68,7 @@ public class WordFinderWithDFS extends AbstractWordFinder {
 			for (int j = 0; j < column; j++) {
 				allPossibleWords.add(matrix[i][j]);
 				generateWords(allPossibleWords, matrix, matrix[i][j], j, i, 1,
-						9, 0);
+						4, 0);
 			}
 		}
 		return allPossibleWords;
